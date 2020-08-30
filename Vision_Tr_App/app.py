@@ -111,6 +111,10 @@ def main():
                    command=getEmotions, font=('Montserrat', 12), bg=blue, fg=platinum)
     button.place(relx=0.5, rely=0.6, anchor=CENTER)
 
+    button =Button(menu_frame,text='Noise Cancel',
+                   command=noiseCancel, font=('Montserrat', 12), bg=blue, fg=platinum)
+    button.place(relx=0.5, rely=0.6, anchor=CENTER)
+
     button = Button(menu_frame, text='Exit', command=exitF,
                     font=('Montserrat', 12), bg=orange, fg=platinum)
     button.place(relx=0.5, rely=0.83, anchor=CENTER)
