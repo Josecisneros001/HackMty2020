@@ -17,10 +17,16 @@ def getHands():
 def exit():
     start_frame.pack_forget()
 
+#join meeting and show functions
 def go():
 
     clipboard = root.clipboard_get()
-    mainBot(clipboard)
+    # start driver
+    driver = start_driver()
+    # get goal link to access via web
+    lastUrl = getUrl(clipboard)
+    # join meeting
+    joinMeeting(driver,lastUrl)
 
     start_frame.pack(fill="both", expand=1)
     title1 = Label(start_frame, text='Zoomer', fg=blue,

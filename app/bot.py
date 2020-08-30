@@ -99,13 +99,4 @@ def getUrl(link):
     return newLink
 
 
-def mainBot(link):
-    # start driver
-    driver = start_driver()
-    # get goal link to access via web
-    lastUrl = getUrl(link)
-    # join meeting with ZOOMER BOT
-    joinMeeting(driver, lastUrl)
-
-
 print("conpila")
