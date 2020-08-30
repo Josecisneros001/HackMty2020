@@ -63,26 +63,26 @@ def main():
     global loading_frame
     loading_frame = Frame(root, width=230, height=1000, bg=black)
     title = Label(loading_frame, text='Zoomer', fg=blue,
-                  bg=black, font=('Lato', 23, 'bold'))
+                  bg=black, font=('Montserrat', 23, 'bold'))
     title.place(relx=0.5, rely=0.1, anchor=CENTER)
 
     info = Label(loading_frame, height=3, text='Loading',
-                 fg=grey, bg=black, font=('Lato', 12))
+                 fg=grey, bg=black, font=('Montserrat', 12))
     info.place(relx=0.5, rely=0.3, anchor=CENTER)
 
     # start_menu
     global start_frame
     start_frame = Frame(root, width=230, height=1000, bg=black)
     title = Label(start_frame, text='Zoomer', fg=blue,
-                  bg=black, font=('Lato', 23, 'bold'))
+                  bg=black, font=('Montserrat', 23, 'bold'))
     title.place(relx=0.5, rely=0.1, anchor=CENTER)
 
     info = Label(start_frame, height=3, text='Copy the meeting link \n in your clipboard \n and hit go!',
-                 fg=grey, bg=black, font=('Lato', 12))
+                 fg=grey, bg=black, font=('Montserrat', 12))
     info.place(relx=0.5, rely=0.3, anchor=CENTER)
 
     button = Button(start_frame, text='Go!', command=go, font=(
-        'Lato', 16), bg=blue, fg=platinum)
+        'Montserrat', 16), bg=blue, fg=platinum,relief=SUNKEN)
     button.place(relx=0.5, rely=0.5, anchor=CENTER)
 
     start_frame.pack()
@@ -92,27 +92,27 @@ def main():
     menu_frame = Frame(root, width=230, height=1000, bg=black)
 
     title = Label(menu_frame, text='Zoomer', fg=blue,
-                  bg=black, font=('Lato', 23, 'bold'))
+                  bg=black, font=('Montserrat', 23, 'bold'))
     title.place(relx=0.5, rely=0.1, anchor=CENTER)
 
     info = Label(menu_frame, height=2, text="Welcome",
-                 fg=grey, bg=black, font=('Lato', 12))
+                 fg=grey, bg=black, font=('Montserrat', 12))
     info.place(relx=0.5, rely=0.2, anchor=CENTER)
 
     button = Button(menu_frame, text='Get Participants',
-                    command=getParticipants, font=('Lato', 12), bg=blue, fg=platinum)
+                    command=getParticipants, font=('Montserrat', 12), bg=blue, fg=platinum)
     button.place(relx=0.5, rely=0.4, anchor=CENTER)
 
     button = Button(menu_frame, text='Count Hands',
-                    command=getHands, font=('Lato', 12), bg=blue, fg=platinum)
+                    command=getHands, font=('Montserrat', 12), bg=blue, fg=platinum)
     button.place(relx=0.5, rely=0.5, anchor=CENTER)
 
     button =Button(menu_frame,text='Sense emotions',
-                   command=getEmotions, font=('Lato', 12), bg=blue, fg=platinum)
+                   command=getEmotions, font=('Montserrat', 12), bg=blue, fg=platinum)
     button.place(relx=0.5, rely=0.6, anchor=CENTER)
 
     button = Button(menu_frame, text='Exit', command=exitF,
-                    font=('Lato', 12), bg=orange, fg=platinum)
+                    font=('Montserrat', 12), bg=orange, fg=platinum)
     button.place(relx=0.5, rely=0.83, anchor=CENTER)
 
     root.mainloop()
