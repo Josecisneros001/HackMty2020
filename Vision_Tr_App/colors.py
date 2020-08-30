@@ -1,0 +1,6 @@
+blue = "#69779b"
+black = "#232333"
+orange = "#9692af"
+white ="#ffffff"
+platinum = "#acdbdf"
+grey = "#d7eaea"

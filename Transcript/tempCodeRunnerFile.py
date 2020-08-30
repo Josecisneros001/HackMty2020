@@ -182,8 +182,7 @@ def main():
     micinfo()
     zoomcaptions('Captions Starting')
 
-    #credentials = service_account.Credentials.from_service_account_file("/Users/Miguel/Desktop/Transcript/google_creds.json")
-    credentials = service_account.Credentials.from_service_account_file("google_creds.json")
+    credentials = service_account.Credentials.from_service_account_file("/Users/Miguel/Desktop/Transcript/google_creds.json")
     client = speech.SpeechClient(credentials=credentials)
     config = types.RecognitionConfig(
         encoding=enums.RecognitionConfig.AudioEncoding.LINEAR16,

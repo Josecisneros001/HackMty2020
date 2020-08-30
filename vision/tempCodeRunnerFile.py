@@ -5,7 +5,6 @@ from PIL import Image, ImageDraw
 import os, io
 import argparse
 import pyautogui
-import time
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS']=r'EduPlus-c31cb42821d6.json'
 # [START vision_face_detection_tutorial_send_request]
@@ -91,16 +90,13 @@ def take_ss(search_filename,faces_filename):
         print('center not found')
     elif zoomcent==None and cent==None:
         pyautogui.click(500,500)
-        take_ss(search_filename,faces_filename)
     else:
         pyautogui.click(cent)
-        time.sleep(2)
         im1 = pyautogui.screenshot()
         im1.save(faces_filename)
 
 # [START vision_face_detection_tutorial_run_application]
-def mainzoomlabel(input_filename, output_filename, max_results):
-    time.sleep(5)
+def main(input_filename, output_filename, max_results):
     take_ss('gall3.png',input_filename)
     with open(input_filename, 'rb') as image:
         faces = detect_face(image, max_results)
@@ -113,7 +109,7 @@ def mainzoomlabel(input_filename, output_filename, max_results):
         highlight_faces(image, faces, output_filename)
 # [END vision_face_detection_tutorial_run_application]
 
-#print(main("forframes.jpg","response.jpg",5))
+print(main("forframes.jpg","response.jpg",5))
 
 # if __name__ == '__main__':
 #     parser = argparse.ArgumentParser(

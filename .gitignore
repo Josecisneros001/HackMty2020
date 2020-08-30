@@ -3,3 +3,7 @@ Audio/SpeechDenoiserCNN/SpeechDenoiserOriginal.py
 Audio/SpeechDenoiserCNN/datasets
 *.wav
 Audio/SpeechDenoiserCNN/SpeechDenoiserOriginal48.py
+app/__pycache__
+vision/EduPlus-c31cb42821d6.json
+Transcript/EduPlus-c31cb42821d6.json
+Transcript/google_creds.json
