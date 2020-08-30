@@ -65,6 +65,8 @@ def filter_queue(hearing,filtering):
         waveFile.setframerate(16000)
         waveFile.writeframes(samples16k)
         waveFile.close() 
+
+        time.sleep(0.1);
         
         noisyAudio, sr=denoiser.read_audio("tmp.wav", sample_rate=16000)
         filtered_np = denoiser.reduceNoiseMain(noisyAudio);
@@ -72,6 +74,8 @@ def filter_queue(hearing,filtering):
         pygame.mixer.pre_init(16000, -16, 1,512,devicename='Transcript (VB-Audio Virtual Cable)', allowedchanges=0)
         pygame.mixer.init()
         pygame.init()
+        
+        time.sleep(0.1);
         
         sounda= pygame.mixer.Sound("tmp_f.wav")
         sounda.play()

@@ -4,6 +4,7 @@ from bot import *
 import multiprocessing as mp
 import threading
 from zoomtestlabel import * 
+from audio_denoiser import main_audio_denoiser
 
 global loginWaitTime
 loginWaitTime = 1.8
@@ -89,7 +90,7 @@ def main():
 
     # create menu frame
     global menu_frame
-    menu_frame = Frame(root, width=230, height=1000, bg=black)
+    menu_frame = Frame(root, width=350, height=1000, bg=black)
 
     title = Label(menu_frame, text='Zoomer', fg=blue,
                   bg=black, font=('Montserrat', 23, 'bold'))
@@ -112,8 +113,8 @@ def main():
     button.place(relx=0.5, rely=0.6, anchor=CENTER)
 
     button =Button(menu_frame,text='Noise Cancel',
-                   command=noiseCancel, font=('Montserrat', 12), bg=blue, fg=platinum)
-    button.place(relx=0.5, rely=0.6, anchor=CENTER)
+                   command=main_audio_denoiser, font=('Montserrat', 12), bg=blue, fg=platinum)
+    button.place(relx=0.5, rely=0.7, anchor=CENTER)
 
     button = Button(menu_frame, text='Exit', command=exitF,
                     font=('Montserrat', 12), bg=orange, fg=platinum)

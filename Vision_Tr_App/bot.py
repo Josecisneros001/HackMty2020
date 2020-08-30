@@ -15,7 +15,7 @@ import random
 # change path if your not zeta IMPORTANT
 global path
 #path = r"C:\Users\Mauricio\Documents\chromedriver_win32\chromedriver.exe"
-path = r"webdriver\chromedriver_win32\chromedriver.exe"
+path = r"C:\Users\josea\Documents\chromedriver_win32\chromedriver.exe"
 
 global mail
 mail = "zoomerapp00@gmail.com"
