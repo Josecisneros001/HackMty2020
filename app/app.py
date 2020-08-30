@@ -8,15 +8,12 @@ root.iconbitmap()
 root.geometry("230x1000")
 root.config(bg=black)
 
-def getParticipants():
-    pass
+def getParticipants(driver):
+      countParticipants(driver)
 
-def getHands():
-    pass
-
-def exit():
-    start_frame.pack_forget()
-
+def getHands(driver):
+      countHands(driver)
+      
 #join meeting and show functions
 def go():
 
@@ -38,18 +35,18 @@ def go():
     info.place(relx=0.5, rely=0.2, anchor=CENTER)
 
     button = Button(start_frame, text='Get Participants',
-                    command=getParticipants, font=('Lato', 12), bg=blue, fg=platinum)
+                    command=getParticipants(driver), font=('Lato', 12), bg=blue, fg=platinum)
     button.place(relx=0.5, rely=0.4, anchor=CENTER)
 
     button = Button(start_frame, text='Count Hands',
-                    command=getHands, font=('Lato', 12), bg=blue, fg=platinum)
+                    command=getHands(driver), font=('Lato', 12), bg=blue, fg=platinum)
     button.place(relx=0.5, rely=0.5, anchor=CENTER)
 
     button = Button(start_frame, text='Exit', command=exit,
                     font=('Lato', 12), bg=orange, fg=platinum)
     button.place(relx=0.5, rely=0.83, anchor=CENTER)
 
-
+           
 # main
 title = Label(text='Zoomer', fg=blue, bg=black, font=('Lato', 23, 'bold'))
 title.place(relx=0.5, rely=0.1, anchor=CENTER)

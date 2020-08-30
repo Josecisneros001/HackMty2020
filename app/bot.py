@@ -83,6 +83,11 @@ def joinMeeting(driver, lastUrl, waitTime=0.95):
 # reference: https://browsersize.com/
 # reference: https://stackoverflow.com/questions/23381324/how-can-i-control-chromedriver-open-window-size
 
+def countParticipants(driver):
+      return 20
+
+def countHands(driver):
+      return 20
 
 def start_driver(headless=False):
     # setup webdriver settings
