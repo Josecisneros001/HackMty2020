@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw
 import os, io
 
 import argparse
-os.environ['GOOGLE_APPLICATION_CREDENTIALS']=r'EdPlus-7f57cfa2055a.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS']=r'/Users/Miguel/Desktop/HackMty2020/vision/EdPlus-7f57cfa2055a.json'
 # [START vision_face_detection_tutorial_send_request]
 def detect_face(face_file, max_results=4):
     """Uses the Vision API to detect faces in the given file.
@@ -25,26 +25,26 @@ def detect_face(face_file, max_results=4):
         image=image, max_results=max_results).face_annotations
 # [END vision_face_detection_tutorial_send_request]
 
-def mostlikely(face, likelihood_name, map):
+def mostlikely(face):
+
+   
+
+    d= {0:'UNKNOWN', 1:'VERY_UNLIKELY', 2:'UNLIKELY', 3:'POSSIBLE',4:'LIKELY', 5:'VERY_LIKELY'}                
+    d2 = {'anger':face.anger_likelihood,'joy':face.joy_likelihood,'sorrow':face.sorrow_likelihood,'surprise':face.surprise_likelihood,'headwear':face.headwear_likelihood}
+    likely = []
+    maxNumber = 0
+    for num in d2.values():
+        maxNumber = max(maxNumber,num)
     
-    print('Detection Confidence {0}'.format(face.detection_confidence))
-    print('Angry likelyhood: {0}'.format(likelihood_name[face.anger_likelihood]))
-    print('Joy likelyhood: {0}'.format(likelihood_name[face.joy_likelihood]))
-    print('Sorrow likelyhood: {0}'.format(likelihood_name[face.sorrow_likelihood]))
-    print('Surprised ikelihood: {0}'.format(likelihood_name[face.surprise_likelihood]))
-    print('Headwear likelyhood: {0}'.format(likelihood_name[face.headwear_likelihood]))
-        
-    ang=face.format(likelihood_name[face.anger_likelihood])
-    joy=format(likelihood_name[face.joy_likelihood])
-    sorr=format(likelihood_name[face.sorrow_likelihood])
-    surp=format(likelihood_name[face.surprise_likelihood])
-    head=format(likelihood_name[face.headwear_likelihood])
-    under=format(likelihood_name[face.under_exposed_likelihood])
-    blurr=format(likelihood_name[face.blurred_likelihood])
+    for state, num2 in d2.items():
+        if num2 == maxNumber:
+            likely.append(state)
     
-    max(map[ang],map[joy],map[sorr],map[surp],map[head],map[under],map[blurr])
-    mstlikely=1
-    return mstlikely
+    
+    #print("maxNumber: ", maxNumber)
+    likely.append(" Certain: "+d[maxNumber])
+    print(likely)
+    return likely
 
 # [START vision_face_detection_tutorial_process_response]
 def highlight_faces(image, faces, output_filename):
@@ -58,14 +58,10 @@ def highlight_faces(image, faces, output_filename):
     """
     im = Image.open(image)
     draw = ImageDraw.Draw(im)
-
-
-    likelihood_name = ('UNKNOWN', 'VERY_UNLIKELY', 'UNLIKELY', 'POSSIBLE',
-                       'LIKELY', 'VERY_LIKELY')
-    maplike = {"Very Likely": 6, 'Likely':5,'Possibly':4,'Unlikely':3,'Very Unlikely':2,'Unknown':1}
-
+    print()
     # Sepecify the font-family and the font-size
     for face in faces:
+        mostlikely(face)
         box = [(vertex.x, vertex.y)
                for vertex in face.bounding_poly.vertices]
         draw.line(box + [box[0]], width=5, fill='#00ff00')
@@ -76,6 +72,7 @@ def highlight_faces(image, faces, output_filename):
                   str(format(face.detection_confidence, '.3f')) + '%',
                   fill='#FF0000',)
     im.save(output_filename)
+    
 # [END vision_face_detection_tutorial_process_response]
 
 # [START vision_face_detection_tutorial_run_application]
@@ -92,7 +89,7 @@ def main(input_filename, output_filename, max_results):
 # [END vision_face_detection_tutorial_run_application]
 
 
-print(main("forframes.jpg","response.jpg",5))
+print(main("/Users/Miguel/Desktop/HackMty2020/vision/forframes.jpg","/Users/Miguel/Desktop/HackMty2020/vision/response.jpg",5))
 
 # if __name__ == '__main__':
 #     parser = argparse.ArgumentParser(
