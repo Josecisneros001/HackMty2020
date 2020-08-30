@@ -1,1 +1,5 @@
-app/__pycache__
+__pycache__
+Audio/SpeechDenoiserCNN/SpeechDenoiserOriginal.py
+Audio/SpeechDenoiserCNN/datasets
+*.wav
+Audio/SpeechDenoiserCNN/SpeechDenoiserOriginal48.py
