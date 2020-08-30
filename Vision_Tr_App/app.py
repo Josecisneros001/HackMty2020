@@ -5,16 +5,27 @@ import multiprocessing as mp
 import threading
 from zoomtestlabel import * 
 from audio_denoiser import main_audio_denoiser
+import xlsxwriter
+
 
 global loginWaitTime
 loginWaitTime = 1.8
 
-
+lista_de_participantes = []
 def getParticipants():
+    workbook = xlsxwriter.Workbook('Lista_De_Asistencia.xlsx')
+    worksheet = workbook.add_worksheet()
     print("getParticipantes..")
     participants = take_attendance(driver)
     for i in range(len(participants)):
+        lista_de_participantes.append(participants[i])
         print(participants[i])
+    row = 0
+    col = 0
+    for persona in (lista_de_participantes):
+        worksheet.write(row, col,persona)
+        row += 1
+    workbook.close()
 
 def getEmotions():
     print('Get participants emotions...')
@@ -63,7 +74,7 @@ def main():
     # loading_menu
     global loading_frame
     loading_frame = Frame(root, width=230, height=1000, bg=black)
-    title = Label(loading_frame, text='Zoomer', fg=blue,
+    title = Label(loading_frame, text='Edu+', fg=blue,
                   bg=black, font=('Montserrat', 23, 'bold'))
     title.place(relx=0.5, rely=0.1, anchor=CENTER)
 
@@ -118,7 +129,7 @@ def main():
 
     button = Button(menu_frame, text='Exit', command=exitF,
                     font=('Montserrat', 12), bg=orange, fg=platinum)
-    button.place(relx=0.5, rely=0.83, anchor=CENTER)
+    button.place(relx=0.5, rely=1.03, anchor=CENTER)
 
     root.mainloop()
 
