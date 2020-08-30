@@ -29,7 +29,7 @@ def feed_queue(q):
                     channels=CHANNELS,
                     rate=RATE,
                     input=True,
-                    input_device_index=5,
+                    input_device_index=2,
                     frames_per_buffer=CHUNK)
     
     print("Recording")
@@ -37,7 +37,7 @@ def feed_queue(q):
         q.put(stream.read(CHUNK, exception_on_overflow=False))
         
         
-if _name_ == '_main_':
+if __name__ == '__main__':
     queue = mp.Queue()
     p = mp.Process(target=feed_queue, args=(queue,))
     p.start()

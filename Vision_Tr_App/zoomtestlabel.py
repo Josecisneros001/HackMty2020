@@ -7,7 +7,7 @@ import argparse
 import pyautogui
 import time
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS']=r'EduPlus-c31cb42821d6.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS']=r'google_creds.json'
 # [START vision_face_detection_tutorial_send_request]
 def detect_face(face_file, max_results=4):
     """Uses the Vision API to detect faces in the given file.
@@ -78,7 +78,7 @@ def highlight_faces(image, faces, output_filename):
 # [END vision_face_detection_tutorial_process_response]
 
 def take_ss(search_filename,faces_filename):
-    zoomcent = pyautogui.locateCenterOnScreen('zoomlogo.png')
+    zoomcent = pyautogui.locateCenterOnScreen('zoomblurr.png')
 
     if zoomcent==None:
         print('not zoom logo found')
@@ -90,8 +90,11 @@ def take_ss(search_filename,faces_filename):
     if cent==None:
         print('center not found')
     elif zoomcent==None and cent==None:
-        pyautogui.click(500,500)
-        take_ss(search_filename,faces_filename)
+        pyautogui.click(1000,500)
+        time.sleep(2)
+        im1 = pyautogui.screenshot()
+        im1.save(faces_filename)
+        #take_ss(search_filename,faces_filename)
     else:
         pyautogui.click(cent)
         time.sleep(2)
@@ -101,7 +104,8 @@ def take_ss(search_filename,faces_filename):
 # [START vision_face_detection_tutorial_run_application]
 def mainzoomlabel(input_filename, output_filename, max_results):
     time.sleep(5)
-    take_ss('gall3.png',input_filename)
+    take_ss('gall5.png',input_filename)
+
     with open(input_filename, 'rb') as image:
         faces = detect_face(image, max_results)
         print('Found {} face{}'.format(
