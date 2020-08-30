@@ -20,8 +20,8 @@ mail = "zoomerapp00@gmail.com"
 global passw
 passw = "Zommer.00"
 
-#CHANGE WAITTIME IF WIFI SLOW
-def joinMeeting(driver, lastUrl, waitTime=0.95):
+def enterZoom(driver, waitTime=1):
+    print("Entering zoom.us")
     # go to regular zoom.us
     driver.get("https://zoom.us")
     time.sleep(waitTime)
@@ -65,6 +65,8 @@ def joinMeeting(driver, lastUrl, waitTime=0.95):
         print("no sign in located")
         sys.exit()
 
+#CHANGE WAITTIME IF WIFI SLOW
+def joinMeeting(driver, lastUrl, waitTime=0.7):
     # actually joining the meeting
     try:
         driver.get(lastUrl)
@@ -90,11 +92,12 @@ def countHands(driver):
       return 20
 
 def start_driver(headless=False):
+    print("Starting driver")
     # setup webdriver settings
     options = webdriver.ChromeOptions()  # hiding startup info that pollutes terminal
     options.headless = headless  # headless or not, passed as arg
     # make window size bigger to see all buttons
-    options.add_argument("--window-size=800,1000")
+    options.add_argument("--window-size=1600,1200")
     # start webdriver
     return webdriver.Chrome(path, chrome_options=options)
 
@@ -103,5 +106,46 @@ def getUrl(link):
     newLink = re.sub("/j/", "/wc/join/", link)
     return newLink
 
+# click_chat(driver) - opens or closes chat window
+# refactor: combine this with open_participants to make general menu opener
+def click_chat(driver):
+	time.sleep(1)
+	# had to handle making window size bigger because participants list cut off button
+	# see driver_start() for solution
+	try: # try to click it right away
+		# find it using the chat icon
+		driver.find_element_by_class_name("footer-button__chat-icon").click()
+	except: # if it isn't clickable (sometimes takes a sec to load properly)
+		print("\tFailed. Trying again, please wait...\n")
+		time.sleep(2)
+		driver.find_element_by_class_name("footer-button__chat-icon").click()
+	return # successfully clicked (hopefully)
 
-print("conpila")
+# open_chat() -  opens chat popup
+def open_chat(driver):
+	print("\tOpening chat menu...\n")
+	click_chat(driver) # click on the chat button
+	print("\tOpened chat menu.\n")
+	return
+
+# close_chat() - closes chat popup
+def close_chat(driver):
+	print("\tClosing chat menu...\n")
+	click_chat(driver) # click on the chat button
+	print("\tClosed chat menu.\n")
+	return
+
+def sendPublicMessage(driver, message = "mamba out"):
+      open_chat(driver)
+      driver.find_element_by_class_name("chat-box__chat-textarea").send_keys(message)
+      driver.find_element_by_class_name("chat-box__chat-textarea").send_keys(Keys.ENTER)
+      close_chat(driver)
+      
+      
+def leaveMeeting(driver):
+      print("\tLeaving meeting...\n")
+      sendPublicMessage(driver)
+      driver.find_element_by_class_name("footer__leave-btn").click()
+      time.sleep(1.3)
+      driver.find_element_by_class_name("leave-meeting-options__btn").click()
+      
