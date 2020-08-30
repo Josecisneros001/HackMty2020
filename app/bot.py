@@ -21,6 +21,7 @@ global passw
 passw = "Zommer.00"
 
 def enterZoom(driver, waitTime=1):
+    print("Entering zoom.us")
     # go to regular zoom.us
     driver.get("https://zoom.us")
     time.sleep(waitTime)
@@ -65,7 +66,7 @@ def enterZoom(driver, waitTime=1):
         sys.exit()
 
 #CHANGE WAITTIME IF WIFI SLOW
-def joinMeeting(driver, lastUrl, waitTime=1):
+def joinMeeting(driver, lastUrl, waitTime=0.7):
     # actually joining the meeting
     try:
         driver.get(lastUrl)
@@ -96,7 +97,7 @@ def start_driver(headless=False):
     options = webdriver.ChromeOptions()  # hiding startup info that pollutes terminal
     options.headless = headless  # headless or not, passed as arg
     # make window size bigger to see all buttons
-    options.add_argument("--window-size=800,1000")
+    options.add_argument("--window-size=1600,1200")
     # start webdriver
     return webdriver.Chrome(path, chrome_options=options)
 
@@ -108,7 +109,7 @@ def getUrl(link):
 # click_chat(driver) - opens or closes chat window
 # refactor: combine this with open_participants to make general menu opener
 def click_chat(driver):
-	time.sleep(2)
+	time.sleep(1)
 	# had to handle making window size bigger because participants list cut off button
 	# see driver_start() for solution
 	try: # try to click it right away
@@ -116,7 +117,7 @@ def click_chat(driver):
 		driver.find_element_by_class_name("footer-button__chat-icon").click()
 	except: # if it isn't clickable (sometimes takes a sec to load properly)
 		print("\tFailed. Trying again, please wait...\n")
-		time.sleep(3)
+		time.sleep(2)
 		driver.find_element_by_class_name("footer-button__chat-icon").click()
 	return # successfully clicked (hopefully)
 

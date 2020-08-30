@@ -13,8 +13,8 @@ def getHands():
 def exitF():
       print("exit")
       menu_frame.pack_forget()
-      leaveMeeting(driver)
       start_frame.pack()
+      leaveMeeting(driver)
 
 #join meeting and show functions
 def go():
@@ -24,7 +24,7 @@ def go():
     # join meeting
     joinMeeting(driver,lastUrl)
     menu_frame.pack()
-    start_frame.forget_pack()
+    start_frame.pack_forget()
            
 # main
 def main():
